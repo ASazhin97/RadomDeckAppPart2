@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context = ".MainActivity" >
+
+    <item android:id="@+id/action_random-card"
+        android:title="@string/show_random_card"
+        android:orderInCategory="1"/>
+
+    <item android:id="@+id/action_view_favorites"
+        android:title="@string/action_view_fav"
+        android:icon="@drawable/ic_add_shopping_cart_black_24dp"
+        android:orderInCategory="2"
+        />
+
+    <item android:id="@+id/action_add_favorites"
+        android:title="@string/action_add_fav"
+        android:orderInCategory="3"
+        />
+
+    <item android:id="@+id/action-share"
+        android:title="@string/action_share"
+        android:orderInCategory="4"
+        android:actionProviderClass="android.widget.ShareActionProvider" />
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        />
+
+</menu>

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Random Deck Builder</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_fav">Add to Favorites</string>
+    <string name="action_view_fav">View Favorites</string>
+    <string name="action_share">Share</string>
+    <string name="title_top">Top fragment</string>
+    <string name="show_random_card">Random Card</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_random_card">Showing 1 Random card and speck</string>
+    <string-array name="pizzas">
+        <item>Diavolo</item>
+        <item>Funghi</item>
+    </string-array>
+    <string-array name="favorites_temp">
+        <item>List of your favorite decks</item>
+        <item>Coming soon!</item>
+    </string-array>
+    <string-array name="stores">
+        <item>Cambridge</item>
+        <item>Sebastopol</item>
+    </string-array>
+    <string-array name="titles">
+        <item>Home</item>
+        <item>Random Card</item>
+        <item>Favorites</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+</resources>
