@@ -73,6 +73,7 @@ public class TopFragment extends Fragment implements View.OnClickListener{
             gen.execute(name, set, colors);
 
             //put stuff into deck
+
             try{
                 ArrayList<String> deckAsync = gen.get();
                 for(int i = 0; i<deckAsync.size(); i++){

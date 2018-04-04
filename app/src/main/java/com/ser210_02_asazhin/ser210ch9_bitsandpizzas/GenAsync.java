@@ -174,14 +174,21 @@ public class GenAsync extends AsyncTask<String, Void, ArrayList<String>> {
                 }
             }
         }
-
+        Log.e("gen", deckList.toString());
         //returns the generated deck
         return deckList;
     }
 
     //not needed but is implemented
-    public void onPostExceture() {
 
+
+    @Override
+    protected void onPostExecute(ArrayList<String> strings) {
+        super.onPostExecute(strings);
+        if(strings!=null){
+            Log.e("GenAsync", strings.toString());
+
+        }
     }
 
     //This code gets a JSON String from the Biffered reader

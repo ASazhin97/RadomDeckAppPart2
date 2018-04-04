@@ -36,8 +36,6 @@ public class DeckListFragment extends ListFragment {
         _genDeck = bundle.getStringArrayList("deck");
 
 
-        //_deck.add("hello");
-
         for (int i = 0; i < _genDeck.size(); i++) {
             _deck.add(_genDeck.get(i));
         }

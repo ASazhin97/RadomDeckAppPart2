@@ -16,10 +16,6 @@
         <item>List of your favorite decks</item>
         <item>Coming soon!</item>
     </string-array>
-    <string-array name="stores">
-        <item>Cambridge</item>
-        <item>Sebastopol</item>
-    </string-array>
     <string-array name="titles">
         <item>Home</item>
         <item>Random Card</item>
@@ -29,4 +25,16 @@
 
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+
+    <string-array name="fontColors">
+        <item>Black</item>
+        <item>Violet</item>
+        <item>Green</item>
+    </string-array>
+
+    <string-array name="backColors">
+        <item>White</item>
+        <item>Blue</item>
+        <item>Orange</item>
+    </string-array>
 </resources>

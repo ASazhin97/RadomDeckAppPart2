@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -182,6 +183,8 @@ public class MainActivity extends Activity {
 
         getActionBar().setTitle(title);
     }
+
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
