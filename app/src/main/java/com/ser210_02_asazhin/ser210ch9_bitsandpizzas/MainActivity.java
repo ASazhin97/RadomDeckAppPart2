@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -134,7 +135,10 @@ public class MainActivity extends Activity {
                 selectItem(3);
                 return true;
             case R.id.action_random_card:
+                Log.e("pressed", "random card");
                 selectItem(1);
+                CardAsync cardGen = new CardAsync();
+                cardGen.execute();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
