@@ -159,24 +159,25 @@ public class MainActivity extends Activity {
                 Fragment fragmentV = fragMan.findFragmentByTag("visible_fragment");
 
                 //adding favorite to database
-                //JOE TRYING TO ADD FAVORITES TO DATABSE HERE ?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/
+                //TRYING TO ADD FAVORITES TO DATABSE HERE ?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/
                 if(fragmentV instanceof DeckListFragment){
                     try{
-                        SQLhelper = new MySQLiteHelper(this);
-                        db = SQLhelper.getWritableDatabase();
-                        //Cursor cursor = db.query("favorites_db", new String[]{"_id", "NAME"},
-                        //        null, null, null, null, null);
+                        SQLhelper = new MySQLiteHelper(getApplicationContext());
+                        SQLhelper.insertDeck("NAme one", "card");
+                        SQLhelper.insertDeck("NAme two", "card");
+                        SQLhelper.insertDeck("NAme three", "card");
+                        Log.i("Done", "added to database");
+                        String returnedname = SQLhelper.getFavName(0);
+                        Log.e("returned name", returnedname);
 
 
 
                     }catch(SQLiteException e){
+                        e.printStackTrace();
                         Toast toast = Toast.makeText(this, "Database no", Toast.LENGTH_LONG);
                         toast.show();
                     }
 
-                    Log.e("add", "adding deck to favorites");
-                    ArrayList<String> deck = ((DeckListFragment) fragmentV).getDeck();
-                    SQLhelper.insertDeck(db, deck.get(1), deck);
 
 
                 }
