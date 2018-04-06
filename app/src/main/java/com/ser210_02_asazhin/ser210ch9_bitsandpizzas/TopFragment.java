@@ -93,7 +93,7 @@ public class TopFragment extends Fragment implements View.OnClickListener{
                 args.putStringArrayList("deck", deck);
                 frag.setArguments(args);
 
-                ft.replace(R.id.content_frame, frag);
+                ft.replace(R.id.content_frame, frag, "visible_fragment");
                 ft.addToBackStack(frag.toString());
                 ft.commit();
 

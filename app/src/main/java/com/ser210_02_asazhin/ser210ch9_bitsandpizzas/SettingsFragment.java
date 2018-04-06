@@ -40,14 +40,16 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        //inflate
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
+        // Variables
         backSpinner = (Spinner) v.findViewById(R.id.backColorSpinner);
         fontSpinner = (Spinner) v.findViewById(R.id.fontColorSpinner);
 
         fontText = (TextView) v.findViewById(R.id.fontText);
         backText = (TextView) v.findViewById(R.id.backText);
 
+        //Spinners
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getActivity(),
                 android.R.layout.simple_spinner_item, backColors);
         adapter1.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -60,16 +62,20 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         fontSpinner.setAdapter(adapter2);
         fontSpinner.setOnItemSelectedListener(this);
 
+        //other variables
         frame = getActivity().findViewById(R.id.content_frame);
         text = (TextView)getActivity().findViewById(R.id.topText);
 
         return v;
     }
 
+
+    //deals with spinner clicking
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.e("clicked", "spinner");
         Spinner spinner = (Spinner) parent;
+        //changes background color
         if(spinner.getId() == backSpinner.getId()){
             switch(position){
                 case 0:
@@ -85,7 +91,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
 
         }
 
-        //chaning the font in progress
+        //chaning the font in progress PROGRESS
         if(spinner.getId() == fontSpinner.getId()){
             //change fot
             switch (position){

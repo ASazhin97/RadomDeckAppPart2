@@ -6,6 +6,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -14,12 +17,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.ShareActionProvider;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import static com.ser210_02_asazhin.ser210ch9_bitsandpizzas.MySQLiteHelper.DATABASE_NAME;
 
 public class MainActivity extends Activity {
     private ShareActionProvider shareActionProvider;
@@ -28,12 +36,20 @@ public class MainActivity extends Activity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private int currentPosition = 0;
+    private MySQLiteHelper SQLhelper;
+    private SQLiteDatabase db;
     ArrayList<String> deck;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //create database;
+//        SQLhelper = new MySQLiteHelper(this);
+//        db = SQLhelper.getWritableDatabase();
+
 
         titles=getResources().getStringArray(R.array.titles);
         drawerList=(ListView)findViewById(R.id.drawer);
@@ -137,8 +153,33 @@ public class MainActivity extends Activity {
             case R.id.action_random_card:
                 Log.e("pressed", "random card");
                 selectItem(1);
-                CardAsync cardGen = new CardAsync();
-                cardGen.execute();
+                return true;
+            case R.id.action_add_favorites:
+                FragmentManager fragMan = getFragmentManager();
+                Fragment fragmentV = fragMan.findFragmentByTag("visible_fragment");
+
+                //adding favorite to database
+                //JOE TRYING TO ADD FAVORITES TO DATABSE HERE ?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/
+                if(fragmentV instanceof DeckListFragment){
+                    try{
+                        SQLhelper = new MySQLiteHelper(this);
+                        db = SQLhelper.getWritableDatabase();
+                        //Cursor cursor = db.query("favorites_db", new String[]{"_id", "NAME"},
+                        //        null, null, null, null, null);
+
+
+
+                    }catch(SQLiteException e){
+                        Toast toast = Toast.makeText(this, "Database no", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+
+                    Log.e("add", "adding deck to favorites");
+                    ArrayList<String> deck = ((DeckListFragment) fragmentV).getDeck();
+                    SQLhelper.insertDeck(db, deck.get(1), deck);
+
+
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -146,12 +187,30 @@ public class MainActivity extends Activity {
 
     }
 
+
+    //deals with what to do for each fragment selection
     private void selectItem(int position){
         currentPosition = position;
         Fragment fragment;
         switch (position){
             case 1:
                 fragment= new RandomFragment();
+                CardAsync cardGen = new CardAsync();
+                cardGen.execute();
+
+                try {
+                    ArrayList<String> cardInfoList = cardGen.get();
+
+                    Bundle args = new Bundle();
+                    args.putStringArrayList("card" , cardInfoList);
+
+                    fragment.setArguments(args);
+
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                } catch (ExecutionException e){
+                    e.printStackTrace();
+                }
                 break;
             case 2:
                 fragment= new FavoritesFragment();

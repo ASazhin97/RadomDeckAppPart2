@@ -49,4 +49,8 @@ public class DeckListFragment extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    public ArrayList<String> getDeck(){
+        return _deck;
+    }
+
 }
