@@ -1,3 +1,12 @@
+/*
+Alexandra Sazhin
+Random Deck App
+The first Fragment, that is why it is on "Top"
+It is the starting fragment and is the default.
+Allows user to input parameters to generate a
+decklist.
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 
@@ -61,7 +70,7 @@ public class TopFragment extends Fragment implements View.OnClickListener{
         colorsText = (TextView) v.findViewById(R.id.colorText);
         setText = (TextView) v.findViewById(R.id.setText);
 
-
+        //change font
         if(MainActivity._fontID == 0){
             topText.setTypeface(Typeface.DEFAULT);
             colorsText.setTypeface(Typeface.DEFAULT);

@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+Settings allows you to change the background color of the app
+and the font on all the screens that dont involve a listView
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 

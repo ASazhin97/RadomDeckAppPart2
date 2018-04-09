@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+A list that shows all of the favorites in the databse
+When click on a card, details show up
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 
@@ -36,8 +43,6 @@ public class FavoritesFragment extends ListFragment {
     public FavoritesFragment() {
         // Required empty public constructor
     }
-
-
 
 
 

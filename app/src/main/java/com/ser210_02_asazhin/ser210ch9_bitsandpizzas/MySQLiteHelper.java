@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+SQL helper to create databse and do querys. Is only
+later intereacted by the DatabseHandler
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 import android.content.ContentValues;

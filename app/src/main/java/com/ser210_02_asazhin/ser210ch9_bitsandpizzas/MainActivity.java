@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements SettingsFragment.Changable
         //create database;
        db = new DatabaseHandler(this);
 
-
+        //set ups
         titles=getResources().getStringArray(R.array.titles);
         drawerList=(ListView)findViewById(R.id.drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

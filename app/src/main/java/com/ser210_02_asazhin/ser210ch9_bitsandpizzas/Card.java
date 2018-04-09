@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+this class holds and receives 1 card
+including its name, its colors, and its text
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 /**

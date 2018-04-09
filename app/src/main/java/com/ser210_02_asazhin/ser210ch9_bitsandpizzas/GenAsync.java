@@ -1,3 +1,9 @@
+/*
+Alexandra Sazhin
+Random Deck App
+generates a deck List
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 import android.os.AsyncTask;

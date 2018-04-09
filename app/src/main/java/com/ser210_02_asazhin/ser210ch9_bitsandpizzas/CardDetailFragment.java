@@ -1,3 +1,14 @@
+/*
+Alexandra Sazhin
+Random Deck App
+This List Fragment shows the details of a card selected from
+the favorites list. It is different from the Random Fragment
+because it does not involve generating a random card
+
+When on this view the user can choose to delete this card
+from their favorites
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 

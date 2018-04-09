@@ -1,3 +1,9 @@
+/*
+Alexandra Sazhin
+Random Deck App
+Handles Database methods
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 import android.content.ContentValues;
@@ -32,6 +38,8 @@ public class DatabaseHandler {
     public void close() {
         this.database.close();
     }
+
+    //adds one card to the database
     public void addCard(String name, String colors, String text){
         name = (name!=null)? name : "";
         colors = (colors!=null)? colors : "";
@@ -49,6 +57,7 @@ public class DatabaseHandler {
         //cursor.moveToFirst();
     }
 
+    //gives all of the cards in favorites back
     public ArrayList<Card> getAllCards() {
         ArrayList<Card> cards= new ArrayList<Card>();
         Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,allColumns,null,null,null,null,null);
@@ -70,6 +79,7 @@ public class DatabaseHandler {
         return s;
     }
 
+    //gives you a card at an ID
     public Card getCardAtId(int id){
         int Rid = id;
         Card c = new Card();
@@ -93,7 +103,7 @@ public class DatabaseHandler {
 
     }
 
-
+    //removes a specific card based on its parameters
     public void removeCard(String name, String colors, String text){
         name = (name!=null)? name : "";
         colors = (colors!=null)? colors : "";

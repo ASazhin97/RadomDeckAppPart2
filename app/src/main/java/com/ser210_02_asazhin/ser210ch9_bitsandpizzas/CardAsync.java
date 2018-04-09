@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+This connects to the API, picks out a random card and displays it to the user.
+When on this screen the user can choose to add this card to his favorites.
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 import android.os.AsyncTask;

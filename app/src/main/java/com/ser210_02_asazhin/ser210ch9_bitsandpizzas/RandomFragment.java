@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+Displays a random card including name, colors, and text.
+Genertated from cardAsync
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 
