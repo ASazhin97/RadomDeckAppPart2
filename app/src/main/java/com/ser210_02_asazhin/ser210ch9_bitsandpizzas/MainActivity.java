@@ -1,3 +1,10 @@
+/*
+Alexandra Sazhin
+Random Deck App
+Main Activity: Main class, only activity all of the fragments are "flipped through" in this activity
+takes care of drawer and menu
+ */
+
 package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 
 import android.app.Activity;
@@ -32,7 +39,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements SettingsFragment.Changable{
     private ShareActionProvider shareActionProvider;
     private String[] titles;
     private ListView drawerList;
@@ -42,6 +49,7 @@ public class MainActivity extends Activity {
     private DatabaseHandler db;
     ArrayList<String> deck;
     ArrayList<String> card;
+    public static int _fontID = 0;
 
 
     @Override
@@ -107,7 +115,7 @@ public class MainActivity extends Activity {
         );
     }
 
-
+    //drawer methods
     protected void onPostCreate(Bundle savedInstanceState){
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
@@ -160,15 +168,13 @@ public class MainActivity extends Activity {
                 FragmentManager fragMan = getFragmentManager();
                 Fragment fragmentV = fragMan.findFragmentByTag("visible_fragment");
 
-                //adding favorite to database
-                //TRYING TO ADD FAVORITES TO DATABSE HERE ?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/
+                //adding favorite to database //
                 if(fragmentV instanceof RandomFragment){
                     try{
                         db.open();
                         ArrayList<String> card = ((RandomFragment) fragmentV).getCard();
                         db.addCard(card.get(0), card.get(1), card.get(2));
                         db.close();
-
 
                     }catch(SQLException e){
                         e.printStackTrace();
@@ -180,6 +186,7 @@ public class MainActivity extends Activity {
 
                 }
                 return true;
+                //deleting favorite //
             case R.id.action_del_favorite:
                 FragmentManager FM = getFragmentManager();
                 Fragment fragmentVis = FM.findFragmentByTag("visible_fragment");
@@ -267,8 +274,14 @@ public class MainActivity extends Activity {
         getActionBar().setTitle(title);
     }
 
+    //method from interface
+    @Override
+    public void changeFont(int fontId) {
+        _fontID = fontId;
 
+    }
 
+    //drawer listener
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){

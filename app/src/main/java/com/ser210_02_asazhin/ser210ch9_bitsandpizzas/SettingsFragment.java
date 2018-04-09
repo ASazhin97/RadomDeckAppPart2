@@ -31,6 +31,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     TextView backText;
     FrameLayout frame;
     TextView text;
+    private Changable change;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -71,6 +72,17 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
     }
 
 
+    //interface
+    static interface Changable {
+        public void changeFont(int fontId);
+    }
+
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+        this.change = (Changable)activity;
+    }
+
+
     //deals with spinner clicking
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -83,11 +95,13 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
                     frame.setBackgroundColor(Color.WHITE);
                     break;
                 case 1:
-                    frame.setBackgroundColor(Color.BLUE);
+                    frame.setBackgroundColor(Color.CYAN);
                     break;
                 case 2:
                     frame.setBackgroundColor(Color.YELLOW);
             }
+
+
 
 
         }
@@ -98,14 +112,19 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
             switch (position){
                 case 0:
                     fontText.setTypeface(Typeface.DEFAULT);
-                    text.setTypeface(Typeface.DEFAULT);
+                    backText.setTypeface(Typeface.DEFAULT);
+                    change.changeFont(0);
 
                     break;
                 case 1:
                     fontText.setTypeface(Typeface.SERIF);
+                    backText.setTypeface(Typeface.SERIF);
+                    change.changeFont(1);
                     break;
                 case 2:
                     fontText.setTypeface(Typeface.MONOSPACE);
+                    backText.setTypeface(Typeface.MONOSPACE);
+                    change.changeFont(2);
                     break;
 
 

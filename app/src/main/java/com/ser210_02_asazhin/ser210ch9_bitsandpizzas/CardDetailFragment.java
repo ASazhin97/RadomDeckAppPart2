@@ -4,6 +4,7 @@ package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 import android.app.ListFragment;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class CardDetailFragment extends ListFragment {
     DatabaseHandler db;
     Card c;
 
+
     public CardDetailFragment() {
         // Required empty public constructor
     }
@@ -31,6 +33,7 @@ public class CardDetailFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View v = super.onCreateView(inflater, container, savedInstanceState);
         db = new DatabaseHandler(getActivity());
         ArrayList<String> card = new ArrayList<String>();

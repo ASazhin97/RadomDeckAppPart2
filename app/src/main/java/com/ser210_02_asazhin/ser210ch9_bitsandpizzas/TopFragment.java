@@ -4,6 +4,7 @@ package com.ser210_02_asazhin.ser210ch9_bitsandpizzas;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -34,6 +35,10 @@ public class TopFragment extends Fragment implements View.OnClickListener{
     String colors;
     String set;
 
+    TextView topText;
+    TextView colorsText;
+    TextView setText;
+
     ArrayList<String> deck;
 
 
@@ -51,6 +56,27 @@ public class TopFragment extends Fragment implements View.OnClickListener{
         _genButton.setOnClickListener(this);
 
         deck = new ArrayList<String>();
+
+        topText = (TextView) v.findViewById(R.id.topText);
+        colorsText = (TextView) v.findViewById(R.id.colorText);
+        setText = (TextView) v.findViewById(R.id.setText);
+
+
+        if(MainActivity._fontID == 0){
+            topText.setTypeface(Typeface.DEFAULT);
+            colorsText.setTypeface(Typeface.DEFAULT);
+            setText.setTypeface(Typeface.DEFAULT);
+        }
+        if(MainActivity._fontID == 1){
+            topText.setTypeface(Typeface.SERIF);
+            colorsText.setTypeface(Typeface.SERIF);
+            setText.setTypeface(Typeface.SERIF);
+        }
+        if(MainActivity._fontID == 2){
+            topText.setTypeface(Typeface.MONOSPACE);
+            colorsText.setTypeface(Typeface.MONOSPACE);
+            setText.setTypeface(Typeface.MONOSPACE);
+        }
 
 
 
