@@ -28,7 +28,7 @@ public class RandomFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        _card = new ArrayList<String>();
+        //_card = new ArrayList<String>();
 
         Bundle bundle = getArguments();
         _genCard = bundle.getStringArrayList("card");
@@ -41,6 +41,10 @@ public class RandomFragment extends ListFragment {
 
 
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    public ArrayList<String> getCard(){
+        return _genCard;
     }
 
 

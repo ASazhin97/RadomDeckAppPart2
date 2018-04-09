@@ -14,53 +14,31 @@ import java.util.ArrayList;
  */
 
 public class MySQLiteHelper extends SQLiteOpenHelper{
-    public static final String TABLE_COMMENTS = "deck";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_CARD = "deckList";
+    public static String COLUMN_ID = "_id";
+    public static String COLUMN_NAME = "_name";
+    public static String COLUMN_COLORS = "_colors";
+    public static String COLUMN_TEXT = "_text";
+    public static String TABLE_COMMENTS = "_cards";
 
-    public static final String DATABASE_NAME = "favorites_db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "_favCardsDb";
+    public static final int DATABASE_VERSION = 1;
+    SQLiteDatabase database;
 
-    public SQLiteDatabase db;
 
-    //create sql db
-    private String DATABASE_CREATE = "CREATE TABLE "
-            + DATABASE_NAME + " (" + COLUMN_ID + " integer primary key autoincrement, " // we use default so that if null/empty strings get added, they automatically change to something easily readable.
+    private static final String CREATE = "create table "
+            + TABLE_COMMENTS + "(" + COLUMN_ID + " integer primary key autoincrement, " // we use default so that if null/empty strings get added, they automatically change to something easily readable.
             + COLUMN_NAME + " text not null default ' ', "
-            + COLUMN_CARD + " text not null default ' ');";
+            + COLUMN_COLORS + " text not null default ' ', "
+            + COLUMN_TEXT + " text not null default ' ');";
 
-    String query = "CREATE TABLE "+DATABASE_NAME+" ("+COLUMN_ID+" INTEGER PRIMARY KEY, "+COLUMN_NAME+" varchar(20),"+COLUMN_CARD+" varchar(20))";
-
-    public MySQLiteHelper(Context context){
-        super(context, "testDB", null, DATABASE_VERSION);
-        Log.e("create", "Constructor of SQL Helper");
-
+    public MySQLiteHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.e("create", "Created The database");
-        db.execSQL(query);
-    }
-
-    public void insertDeck(String name, String card){
-        Log.e("method", "insertDeck");
-        String query = "INSERT INTO favorites_db values(null, ?, ?)";
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(query, new String[]{name,card});
-        db.close();
-    }
-
-    public String getFavName(int id){
-        Log.e("method", "getFavname");
-        String nameFav = "Favorite name goes here";
-        SQLiteDatabase db = this.getWritableDatabase();
-        String queary2 = "SELECT name FROM favorites_db WHERE _id = ?";
-        Cursor c = db.rawQuery(queary2, new String[]{Integer.toString(id)});
-        db.close();
-        return nameFav;
+        db.execSQL(CREATE);
+        //database = this.getWritableDatabase();
     }
 
     @Override
@@ -71,4 +49,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);
         onCreate(db);
     }
+
+
 }

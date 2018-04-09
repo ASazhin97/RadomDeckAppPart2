@@ -4,6 +4,7 @@
     <string name="action_add_fav">Add to Favorites</string>
     <string name="action_view_fav">View Favorites</string>
     <string name="action_share">Share</string>
+    <string name="action_delete_fav">Delete Favorite</string>
     <string name="title_top">Top fragment</string>
     <string name="show_random_card">Random Card</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

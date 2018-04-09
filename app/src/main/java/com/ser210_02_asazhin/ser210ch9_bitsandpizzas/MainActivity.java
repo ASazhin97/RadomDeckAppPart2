@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,12 +23,14 @@ import android.widget.ListView;
 import android.widget.ShareActionProvider;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-
-import static com.ser210_02_asazhin.ser210ch9_bitsandpizzas.MySQLiteHelper.DATABASE_NAME;
 
 public class MainActivity extends Activity {
     private ShareActionProvider shareActionProvider;
@@ -36,9 +39,9 @@ public class MainActivity extends Activity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private int currentPosition = 0;
-    private MySQLiteHelper SQLhelper;
-    private SQLiteDatabase db;
+    private DatabaseHandler db;
     ArrayList<String> deck;
+    ArrayList<String> card;
 
 
     @Override
@@ -47,8 +50,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //create database;
-//        SQLhelper = new MySQLiteHelper(this);
-//        db = SQLhelper.getWritableDatabase();
+       db = new DatabaseHandler(this);
 
 
         titles=getResources().getStringArray(R.array.titles);
@@ -160,19 +162,15 @@ public class MainActivity extends Activity {
 
                 //adding favorite to database
                 //TRYING TO ADD FAVORITES TO DATABSE HERE ?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/?/
-                if(fragmentV instanceof DeckListFragment){
+                if(fragmentV instanceof RandomFragment){
                     try{
-                        SQLhelper = new MySQLiteHelper(getApplicationContext());
-                        SQLhelper.insertDeck("NAme one", "card");
-                        SQLhelper.insertDeck("NAme two", "card");
-                        SQLhelper.insertDeck("NAme three", "card");
-                        Log.i("Done", "added to database");
-                        String returnedname = SQLhelper.getFavName(0);
-                        Log.e("returned name", returnedname);
+                        db.open();
+                        ArrayList<String> card = ((RandomFragment) fragmentV).getCard();
+                        db.addCard(card.get(0), card.get(1), card.get(2));
+                        db.close();
 
 
-
-                    }catch(SQLiteException e){
+                    }catch(SQLException e){
                         e.printStackTrace();
                         Toast toast = Toast.makeText(this, "Database no", Toast.LENGTH_LONG);
                         toast.show();
@@ -181,6 +179,27 @@ public class MainActivity extends Activity {
 
 
                 }
+                return true;
+            case R.id.action_del_favorite:
+                FragmentManager FM = getFragmentManager();
+                Fragment fragmentVis = FM.findFragmentByTag("visible_fragment");
+
+                //delteting from database
+                if(fragmentVis instanceof CardDetailFragment){
+                    try {
+                        db.open();
+                        Card c = ((CardDetailFragment) fragmentVis).getCard();
+                        db.removeCard(c.getName(), c.getColors(), c.getText());
+                        db.close();
+
+                    } catch (SQLException e){
+                        e.printStackTrace();
+                    }
+                    selectItem(2);
+
+                }
+
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

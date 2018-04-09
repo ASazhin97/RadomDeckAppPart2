@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class FavoritesActivity extends Activity {
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

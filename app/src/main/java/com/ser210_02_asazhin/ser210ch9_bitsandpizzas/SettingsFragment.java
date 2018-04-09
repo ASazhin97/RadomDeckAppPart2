@@ -66,6 +66,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
         frame = getActivity().findViewById(R.id.content_frame);
         text = (TextView)getActivity().findViewById(R.id.topText);
 
+
         return v;
     }
 
@@ -106,7 +107,11 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemSele
                 case 2:
                     fontText.setTypeface(Typeface.MONOSPACE);
                     break;
+
+
             }
+
+
 
         }
     }
